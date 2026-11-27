@@ -46,6 +46,8 @@ MEREL is a dialogue prototype for research on personalized support for depressiv
 
 Click Merel to open workspace navigation and browse 20 expressions in Settings. All 34 image assets first display a matching preview, then load a lossless full-resolution WebP. Late images cannot overwrite the expression currently selected.
 
+**Mili — City Blue** plays on loop as a compact AAC background track. If the browser blocks autoplay, playback starts on the first interaction and continues across views.
+
 </details>
 
 ## Quick start

@@ -54,6 +54,7 @@ def main():
     import mimetypes
     # Windows registry mappings may label WebP as an arbitrary binary file.
     mimetypes.add_type('image/webp', '.webp')
+    mimetypes.add_type('audio/mp4', '.m4a')
     uvicorn.run('backend.app:app', host=args.host, port=args.port, access_log=False)
 
 
