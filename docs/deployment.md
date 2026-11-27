@@ -4,7 +4,7 @@
 
 ## 本地启动
 
-按照 [README](../README.md#quick-start--快速启动) 创建虚拟环境并安装依赖。复制 `.env.example` 为 `.env` 后填写自己的模型配置。
+按照 [README](../README.md#快速启动) 创建虚拟环境并安装依赖。复制 `.env.example` 为 `.env` 后填写自己的模型配置。
 
 ```bash
 python -m venv .venv
