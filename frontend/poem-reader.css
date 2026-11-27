@@ -1,0 +1,84 @@
+/* Verse is set directly on the conversation background. */
+.chat-scroll:has(> merel-poem) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-block: 12px;
+}
+merel-poem {
+  display: block;
+  flex: none;
+  margin: auto 0;
+  padding: 12px clamp(10px, 2vw, 32px) 48px;
+  container-type: inline-size;
+  pointer-events: none;
+}
+.poem-card {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.poem-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.poem-reading { position: relative; }
+.poem-stage { min-height: 5.5em; display: grid; align-items: center; }
+.poem-pair, .poem-line { margin: 0; }
+.poem-line {
+  color: #675f70;
+  font: italic 400 clamp(24px, 6.65cqi, 42px)/1.17 'Palatino Linotype', Georgia, serif;
+  letter-spacing: -.035em;
+  text-wrap: pretty;
+}
+.poem-touch,
+.poem-touch:hover:not(:disabled) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  pointer-events: auto;
+}
+.poem-touch:focus-visible { outline: 1px dotted #797280; outline-offset: 6px; }
+@keyframes verse-rise {
+  from { opacity: 0; transform: translateY(.33em); filter: blur(1.2px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes verse-lift {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-.17em); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .poem-pair.is-entering .poem-line {
+    animation: verse-rise 1s cubic-bezier(.2,.7,.24,1) both;
+  }
+  .poem-pair.is-entering .poem-line-second { animation-delay: .32s; }
+  .poem-pair.is-leaving { animation: verse-lift .44s ease-in both; }
+  .poem-pair.is-paused, .poem-pair.is-paused .poem-line { animation: none; }
+}
+@media (max-width: 600px) {
+  .chat-scroll:has(> merel-poem) { padding-left: 0; }
+  .is-chat:has(merel-poem) {
+    --figure-width: min(46vw, calc((100dvh - 180px) * .37));
+    --figure-left: -22px;
+  }
+  merel-poem {
+    width: 61%;
+    margin-left: auto;
+    padding: 0 0 46px;
+  }
+  .poem-line { font-size: clamp(20px, 9cqi, 29px); }
+}
+@media (max-height: 520px) {
+  merel-poem { padding-block: 3px 35px; }
+  .poem-line { font-size: clamp(18px, 4.5cqi, 27px); }
+}

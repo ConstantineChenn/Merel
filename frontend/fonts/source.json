@@ -1,0 +1,23 @@
+{
+  "family": "Theano Didot",
+  "source": "https://ctan.org/pkg/theanodidot",
+  "author": "Alexey Kryukov",
+  "license": "SIL Open Font License 1.1",
+  "files": [
+    {
+      "path": "TheanoDidot-Regular.ttf",
+      "bytes": 169668,
+      "sha256": "a8380b87e303bb76117837717e22e09bdfae19409f528ac97825f87a6d33e499"
+    },
+    {
+      "path": "TheanoDidot-Bold.ttf",
+      "bytes": 136472,
+      "sha256": "4d54f1f3c7d815adea67a6c847d21e54b969b2cd6ea50ece87148dd8387de891"
+    },
+    {
+      "path": "SILOpenFontLicense.txt",
+      "bytes": 4300,
+      "sha256": "6a405c51d93f19a9a99e62e92184dd39773ce28528abd380e8c6688e4073c240"
+    }
+  ]
+}

@@ -1,0 +1,683 @@
+{
+  "date": "2026-11-23",
+  "asset_count": 34,
+  "provenance_method": "Thirteen original assets were checked against the local source manifest. The header sticker is a separate edited derivative. The interactive portrait uses byte-identical copies of the 20 supplied or previously assembled full-body PNGs, including the unmodified neutral portrait and 19 registered facial composites. Each deployed portrait was checked against its source by SHA-256.",
+  "online_source_verification_performed": false,
+  "image_editing_performed": true,
+  "assets": [
+    {
+      "path": "images/merel/portrait.webp",
+      "bytes": 774358,
+      "width": 594,
+      "height": 2046,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "archived portrait",
+      "original_relative_path": "01 梅蕾尔 Merel/04 立绘与造型/立绘_紫披肩与白色长外套_531701.webp",
+      "sha256": "5b1952cc1673a0a80f289b744e78e152333665ffe88cb2678adef926d2abd20a",
+      "source_pages": [
+        "https://uttu.merui.net/npcs/merel/"
+      ],
+      "asset_urls": [
+        "https://assets.merui.net/headicon_img_l2d/531701.webp"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/neutral.png",
+      "bytes": 39102,
+      "width": 136,
+      "height": 136,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "neutral icon",
+      "original_relative_path": "01 梅蕾尔 Merel/05 头像与表情/Merel Icon.png",
+      "sha256": "e02f7c4e229d4d76a7855b96e0c8c6e0286cb65f5db57f916b9f7bdfc75c1ae7",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/c/c8/Merel_Icon.png/revision/latest?cb=20260326025731&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/smile.png",
+      "bytes": 39222,
+      "width": 136,
+      "height": 136,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "smiling icon",
+      "original_relative_path": "01 梅蕾尔 Merel/05 头像与表情/Merel Smile Icon.png",
+      "sha256": "fc863e16eb3dbdfe11ad8c295ccbf831af3b17b762589985744bc31853afb5d1",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/a/a2/Merel_Smile_Icon.png/revision/latest?cb=20260327041018&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/happy.png",
+      "bytes": 39298,
+      "width": 136,
+      "height": 136,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "happy icon",
+      "original_relative_path": "01 梅蕾尔 Merel/05 头像与表情/Merel Happy Icon.png",
+      "sha256": "75fa20e2c7ad3991eed669f3b1ba68ac970facb713041868db40f55a51126b72",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/0/06/Merel_Happy_Icon.png/revision/latest?cb=20260327043009&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/curious.png",
+      "bytes": 39122,
+      "width": 136,
+      "height": 136,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "curious icon",
+      "original_relative_path": "01 梅蕾尔 Merel/05 头像与表情/Merel Curious Icon.png",
+      "sha256": "0bb20a76a0eb759ecbf683b2d6238268128e2180a10a5a61ebe715457d8ac5d5",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/0/0a/Merel_Curious_Icon.png/revision/latest?cb=20260327033754&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/serious.png",
+      "bytes": 38826,
+      "width": 136,
+      "height": 136,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "serious icon",
+      "original_relative_path": "01 梅蕾尔 Merel/05 头像与表情/Merel Serious Icon.png",
+      "sha256": "d02d2d8cdc745641aa8239df9699e1544affc044987c08d61d43717b99359af5",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/3/3b/Merel_Serious_Icon.png/revision/latest?cb=20260814135754&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/talk.png",
+      "bytes": 39099,
+      "width": 136,
+      "height": 136,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "talking icon",
+      "original_relative_path": "01 梅蕾尔 Merel/05 头像与表情/Merel Talk Icon.png",
+      "sha256": "7fea5c46a4eab3ce4c1e27fe8ec2e63dbcafdf1ada2111f9b5e3f22f044c8c38",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/4/41/Merel_Talk_Icon.png/revision/latest?cb=20260411034149&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/sticker-tears.png",
+      "bytes": 1489100,
+      "width": 1782,
+      "height": 1780,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "tearful chibi sticker",
+      "original_relative_path": "01 梅蕾尔 Merel/06 漫画与贴纸/Sticker Vol26 03.png",
+      "sha256": "3464fabec56636face124046524d06752dfa9bd138f8ff4e1cbc507add0030d1",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/2/23/Sticker_Vol26_03.png/revision/latest?cb=20260309104624&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/sticker-worried.png",
+      "bytes": 833217,
+      "width": 1782,
+      "height": 1780,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "worried chibi sticker",
+      "original_relative_path": "01 梅蕾尔 Merel/06 漫画与贴纸/Sticker Vol26 04.png",
+      "sha256": "b2611a887493dced365175093977eb3a3954b2be51a908f828dd23c399bcb00a",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/8/8a/Sticker_Vol26_04.png/revision/latest?cb=20260309104620&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/sticker-salute.png",
+      "bytes": 1906979,
+      "width": 1782,
+      "height": 1780,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "saluting chibi sticker with original embedded English text",
+      "original_relative_path": "01 梅蕾尔 Merel/06 漫画与贴纸/Sticker Vol31 09.png",
+      "sha256": "10595a8a728f404d593e2797fb81da8c8a6f6cb4621df694f2cc647d79d7a865",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/8/89/Sticker_Vol31_09.png/revision/latest?cb=20260814050625&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/brand-salute.png",
+      "bytes": 1383139,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "frames": 1,
+      "sha256": "42e319aa5643a74d57736bef587e9cc5b653d8114d491b2e0b27ef5a0e480e7c",
+      "transparent_pixels": true,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "transparent_pixel_count": 621384,
+      "partially_transparent_pixel_count": 951132,
+      "opaque_pixel_count": 0,
+      "alpha_bbox": [
+        0,
+        54,
+        1182,
+        1254
+      ],
+      "asset_kind": "generatively_edited_derivative",
+      "role": "top-left header saluting avatar with overlaid lettering removed",
+      "derived_from": [
+        {
+          "path": "images/merel/sticker-salute.png",
+          "sha256": "10595a8a728f404d593e2797fb81da8c8a6f6cb4621df694f2cc647d79d7a865",
+          "relationship": "primary image edit target",
+          "source_pages": [
+            "https://reverse1999.fandom.com/wiki/Merel/Gallery"
+          ],
+          "asset_urls": [
+            "https://static.wikia.nocookie.net/reverse1999/images/8/89/Sticker_Vol31_09.png/revision/latest?cb=20260814050625&format=original"
+          ]
+        },
+        {
+          "kind": "user_provided_reference_image",
+          "description": "Screenshot containing three Chinese-caption versions of the same saluting pose; used to reconstruct the areas previously covered by lettering."
+        }
+      ],
+      "processing": {
+        "tool": "image_gen",
+        "operation": "Remove text and its outline; reconstruct locally covered hair and goggles while retaining transparent background and saluting pose.",
+        "selected_version": 2,
+        "transparent_background_requested": true,
+        "record": "images/merel/图像处理记录.txt"
+      },
+      "is_byte_identical_to_primary_source": false,
+      "unchanged_pixels_not_claimed": true,
+      "online_source_verification_performed": false,
+      "character": "Merel"
+    },
+    {
+      "path": "images/merel/nav-vol31-01.png",
+      "bytes": 2749501,
+      "width": 1782,
+      "height": 1780,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "user-selected navigation image",
+      "character": "Rhiannon",
+      "character_label_zh": "小瑞安侬",
+      "asset_kind": "unchanged_original",
+      "original_relative_path": "02 小瑞安侬 Rhiannon/06 漫画与贴纸/Sticker Vol31 01.png",
+      "sha256": "1ec5dd0160adc979294d2f529e6e541319b2b90b77e83f8b63813d0a6fa59734",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Rhiannon/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/7/71/Sticker_Vol31_01.png/revision/latest?cb=20260814050255&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "delivery_copy_source": {
+        "sha256": "1ec5dd0160adc979294d2f529e6e541319b2b90b77e83f8b63813d0a6fa59734",
+        "filename": "Sticker Vol31 01.png",
+        "kind": "user_supplied_local_file"
+      },
+      "online_source_verification_performed": false,
+      "image_editing_performed": false
+    },
+    {
+      "path": "images/merel/nav-vol31-02.png",
+      "bytes": 2496229,
+      "width": 1782,
+      "height": 1780,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "user-selected navigation image",
+      "character": "Rhiannon",
+      "character_label_zh": "小瑞安侬",
+      "asset_kind": "unchanged_original",
+      "original_relative_path": "02 小瑞安侬 Rhiannon/06 漫画与贴纸/Sticker Vol31 02.png",
+      "sha256": "710370de093af68d1f16176f427ef494089ef85b9684faa48cf1a5f51787673a",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Rhiannon/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/c/c3/Sticker_Vol31_02.png/revision/latest?cb=20260814050328&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "delivery_copy_source": {
+        "sha256": "710370de093af68d1f16176f427ef494089ef85b9684faa48cf1a5f51787673a",
+        "filename": "Sticker Vol31 02.png",
+        "kind": "user_supplied_local_file"
+      },
+      "online_source_verification_performed": false,
+      "image_editing_performed": false
+    },
+    {
+      "path": "images/merel/nav-vol31-04.png",
+      "bytes": 1768281,
+      "width": 1782,
+      "height": 1780,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "user-selected navigation image",
+      "character": "Rhiannon",
+      "character_label_zh": "小瑞安侬",
+      "asset_kind": "unchanged_original",
+      "original_relative_path": "02 小瑞安侬 Rhiannon/06 漫画与贴纸/Sticker Vol31 04.png",
+      "sha256": "7e3f9164a31a50cafe954daa87a38bebbc2acb727f3c50a5441bdea3cf436bb2",
+      "source_pages": [
+        "https://reverse1999.fandom.com/wiki/Rhiannon/Gallery"
+      ],
+      "asset_urls": [
+        "https://static.wikia.nocookie.net/reverse1999/images/1/12/Sticker_Vol31_04.png/revision/latest?cb=20260814050416&format=original"
+      ],
+      "source_sidecar_hash_verified": true,
+      "delivery_copy_source": {
+        "sha256": "7e3f9164a31a50cafe954daa87a38bebbc2acb727f3c50a5441bdea3cf436bb2",
+        "filename": "Sticker Vol31 04.png",
+        "kind": "user_supplied_local_file"
+      },
+      "online_source_verification_performed": false,
+      "image_editing_performed": false
+    },
+    {
+      "path": "images/merel/expressions/aghast.png",
+      "bytes": 9642082,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "e743c9fe23a7eb58977b7168c85517cd1cbd4da4465e0c985f823d7873291677",
+      "delivery_copy_source": {
+        "filename": "Merel Aghast.png",
+        "sha256": "e743c9fe23a7eb58977b7168c85517cd1cbd4da4465e0c985f823d7873291677",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/crying.png",
+      "bytes": 9630316,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "aa397cc99ac61ad731123e289bf93a808f4e8ed55725a4b1b6cdf0c47f7f4d43",
+      "delivery_copy_source": {
+        "filename": "Merel Crying.png",
+        "sha256": "aa397cc99ac61ad731123e289bf93a808f4e8ed55725a4b1b6cdf0c47f7f4d43",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/curious.png",
+      "bytes": 9623838,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "d74e4310f40f2e610e91978a386c5703898df211fd3229642d366c533bdeb235",
+      "delivery_copy_source": {
+        "filename": "Merel Curious.png",
+        "sha256": "d74e4310f40f2e610e91978a386c5703898df211fd3229642d366c533bdeb235",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/happy.png",
+      "bytes": 9620809,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "9125af0e4679b639b937ff60ed890796d69a423607cc46f56e696ab06b98a8bf",
+      "delivery_copy_source": {
+        "filename": "Merel Happy.png",
+        "sha256": "9125af0e4679b639b937ff60ed890796d69a423607cc46f56e696ab06b98a8bf",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/hurt-sad-talking.png",
+      "bytes": 9630509,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "e94269673e113b6b940fb369c938e0bfc289aac02decc037071d4bae1f620097",
+      "delivery_copy_source": {
+        "filename": "Merel Hurt Sad Talking.png",
+        "sha256": "e94269673e113b6b940fb369c938e0bfc289aac02decc037071d4bae1f620097",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/hurt-serious-talking.png",
+      "bytes": 9635485,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "e13746718c74c0a59be1773336a41a1ed3cd112f6c9bab4062f713b3ff0288c7",
+      "delivery_copy_source": {
+        "filename": "Merel Hurt Serious Talking.png",
+        "sha256": "e13746718c74c0a59be1773336a41a1ed3cd112f6c9bab4062f713b3ff0288c7",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/hurt-smile-talking.png",
+      "bytes": 9634489,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "cda0b84e484177aa841dab72cd690e92124638e081317143c17a72f417efb3a9",
+      "delivery_copy_source": {
+        "filename": "Merel Hurt Smile Talking.png",
+        "sha256": "cda0b84e484177aa841dab72cd690e92124638e081317143c17a72f417efb3a9",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/hurt-smile.png",
+      "bytes": 9630136,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "7cc172c5395a1c8761b48e8aea70cee3aeaca640deceab2b1b5618ba98054e33",
+      "delivery_copy_source": {
+        "filename": "Merel Hurt Smile.png",
+        "sha256": "7cc172c5395a1c8761b48e8aea70cee3aeaca640deceab2b1b5618ba98054e33",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/hurt-talking.png",
+      "bytes": 9631528,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "ede0fdafebeca31ee82c1ea9598ceab72e09839dd5e13bafb1cfc2e0d1db46cd",
+      "delivery_copy_source": {
+        "filename": "Merel Hurt Talking.png",
+        "sha256": "ede0fdafebeca31ee82c1ea9598ceab72e09839dd5e13bafb1cfc2e0d1db46cd",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/sad-serious-talking.png",
+      "bytes": 9639079,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "ae4a6a9bc2c88bb4770e6745ff0b7f404fc8c1acba87109675c55ef04602702b",
+      "delivery_copy_source": {
+        "filename": "Merel Sad Serious Talking.png",
+        "sha256": "ae4a6a9bc2c88bb4770e6745ff0b7f404fc8c1acba87109675c55ef04602702b",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/sad-smile-talking.png",
+      "bytes": 9638069,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "6035a688beeed1e2db6937f47f51d9d0932895f64231a2c46a8956b54fa4ce54",
+      "delivery_copy_source": {
+        "filename": "Merel Sad Smile Talking.png",
+        "sha256": "6035a688beeed1e2db6937f47f51d9d0932895f64231a2c46a8956b54fa4ce54",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/sad.png",
+      "bytes": 9622376,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "135c0583050c11820f4d2f3350e37b17c458d0faa9282d295c994c9c79961e0a",
+      "delivery_copy_source": {
+        "filename": "Merel Sad.png",
+        "sha256": "135c0583050c11820f4d2f3350e37b17c458d0faa9282d295c994c9c79961e0a",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/serious-talking.png",
+      "bytes": 9641741,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "18d11325dbd8237cd2e5859bab644431d79ea18b29f07950c6c0438e04bd4812",
+      "delivery_copy_source": {
+        "filename": "Merel Serious Talking.png",
+        "sha256": "18d11325dbd8237cd2e5859bab644431d79ea18b29f07950c6c0438e04bd4812",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/serious.png",
+      "bytes": 9633296,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "a6b3b52d12acde5bb7a135e47f424b38a3894ab9cfeaff41979c9c222875874b",
+      "delivery_copy_source": {
+        "filename": "Merel Serious.png",
+        "sha256": "a6b3b52d12acde5bb7a135e47f424b38a3894ab9cfeaff41979c9c222875874b",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/smile.png",
+      "bytes": 9616549,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "0bf5885a6a84851a606caf3a22ffdd0645bb26d54e891b33555011b47013693e",
+      "delivery_copy_source": {
+        "filename": "Merel Smile.png",
+        "sha256": "0bf5885a6a84851a606caf3a22ffdd0645bb26d54e891b33555011b47013693e",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/surprised-smile-talking.png",
+      "bytes": 9638439,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "767b356ddb8b20649d6379965703e0c663d759039bf6058c327392111014ed8a",
+      "delivery_copy_source": {
+        "filename": "Merel Surprised Smile Talking.png",
+        "sha256": "767b356ddb8b20649d6379965703e0c663d759039bf6058c327392111014ed8a",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/surprised.png",
+      "bytes": 9627124,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "62069a5369c28c663b329cf0f3965e0bc7da1c94093c789f2e7e0530583db650",
+      "delivery_copy_source": {
+        "filename": "Merel Surprised.png",
+        "sha256": "62069a5369c28c663b329cf0f3965e0bc7da1c94093c789f2e7e0530583db650",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/talk.png",
+      "bytes": 9603845,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "e04cd52071899985791b7c00a66ad57f5db2e2d0c37ae726c9b2f62b124ba035",
+      "delivery_copy_source": {
+        "filename": "Merel Talk.png",
+        "sha256": "e04cd52071899985791b7c00a66ad57f5db2e2d0c37ae726c9b2f62b124ba035",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/worried.png",
+      "bytes": 9619820,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "registered_face_composite",
+      "sha256": "b943329781b03fcdb42a57bc214cfa9128321e5077985a3c9ae40171b5987fe5",
+      "delivery_copy_source": {
+        "filename": "Merel Worried.png",
+        "sha256": "b943329781b03fcdb42a57bc214cfa9128321e5077985a3c9ae40171b5987fe5",
+        "kind": "full_body_expression_collection"
+      }
+    },
+    {
+      "path": "images/merel/expressions/neutral.png",
+      "bytes": 7097201,
+      "width": 1789,
+      "height": 6090,
+      "frames": 1,
+      "transparent_pixels": true,
+      "role": "interactive full-body expression",
+      "character": "Merel",
+      "asset_kind": "unchanged_original",
+      "sha256": "5b6ae188cabb64c2a103311cc147dc9b490d101c66f0df84c613c3cce3ca5159",
+      "delivery_copy_source": {
+        "filename": "Merel.png",
+        "sha256": "5b6ae188cabb64c2a103311cc147dc9b490d101c66f0df84c613c3cce3ca5159",
+        "kind": "full_body_expression_collection"
+      }
+    }
+  ],
+  "original_asset_count": 14,
+  "derived_asset_count": 20,
+  "original_assets_edited": false,
+  "characters": [
+    "Merel",
+    "Rhiannon"
+  ]
+}

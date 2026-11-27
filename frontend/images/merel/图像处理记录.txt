@@ -1,0 +1,13 @@
+MEREL 顶栏敬礼图处理记录
+日期：2026-11-23
+输出：brand-salute.png
+模式：内置 image_gen 图像编辑；transparent_background=true。
+主图：sticker-salute.png，与用户提供的 AYE AYE CAPTAIN 敬礼图一致。
+辅助参考：用户提供的三种中文标题版本截图，用于参考被文字遮挡的发顶与护目镜。
+操作：移除叠加文字与白色描边，生成补齐被遮挡的局部，输出透明背景派生图。
+选择：采用第二次编辑结果；第一版护目镜偏大，未部署。
+用途：顶栏标识图；原始敬礼贴纸继续保留在表情选择器中。
+说明：该文件经过生成式编辑，并非与原图像素一致的无损去字。来源与SHA256详见asset-sources.json。
+
+实际编辑提示词：
+Use case: precise-object-edit. Image 1 is the sole edit target: original Merel saluting chibi sticker. Image 2 contains three alternate caption versions of the SAME pose; use these ONLY as references to reconstruct the small top-of-head areas obscured in Image 1. Remove the overlaid phrase 'AYE AYE CAPTAIN!' and all its white outlines from Image 1. Preserve the ORIGINAL drawing everywhere outside the lettering: identical face silhouette, green eyes and eyelids, downturned small mouth, hand/finger shape, saluting pose, hair strands, dotted hair highlights, clothes, colors, proportions and line texture. Reconstruct missing hair/goggle fragments from the alternate-caption versions, retaining the original top contour and SMALL, partly hidden goggles. Do NOT add large exposed goggles or invent a new head shape. This is a local caption cleanup, not a redraw or redesign. Keep the original square composition and character scale. Leave true transparent alpha around the character, including where letters above the character were removed. No text of any kind, no opaque background, no new border, no watermark.

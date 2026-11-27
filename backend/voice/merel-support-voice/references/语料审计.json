@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-24",
+  "verification_scope": "local consistency, file hashes and supplied provenance",
+  "online_original_text_verification": false,
+  "sources": [
+    {
+      "filename": "01 南极篇·护卫兵原文.txt",
+      "bytes": 5654,
+      "sha256": "ebbc0ce7403cb9f401d80f6dcec70580e1c45da7b2eee696035fbd0eba6fe5ed"
+    },
+    {
+      "filename": "02 梅蕾尔·四章发言原文.txt",
+      "bytes": 56163,
+      "sha256": "aeb8a761bcb386960c83d0e3326496b52de97e275fe459b623a50510f33d77f3"
+    },
+    {
+      "filename": "03 梅蕾尔·补充声部与匿名候选.txt",
+      "bytes": 4426,
+      "sha256": "10c9fa8dab92b0bef2e5c2c9d236a71ecffaf0c9f77fdd978d5d6daa81f36d82"
+    },
+    {
+      "filename": "05 梅蕾尔·四章发言与出处.jsonl",
+      "bytes": 370089,
+      "sha256": "83e905d5ab5719d89f7188a6201a0cf04e0120fd53adc8efa00258643dab2ca6"
+    }
+  ],
+  "canonical_unique_records": 614,
+  "named_main_records": 571,
+  "guard_alias_records": 43,
+  "supplemental_records": 23,
+  "duplicate_relationships": [
+    "01 repeats the first 43 items of 02",
+    "02 and 05 contain the same 614 statements"
+  ],
+  "classification_counts": {
+    "文本表达": 570,
+    "仅标点的反应": 38,
+    "施展变形术时的拟声": 6
+  },
+  "chapter_counts": {
+    "复乐园": 43,
+    "行于漫漫长路上": 59,
+    "远征记": 192,
+    "他者的悲哀": 320
+  },
+  "supplement_treatment": "Keep original labels. No supplemental line is used as a default voice example.",
+  "descriptive_counts": {
+    "rows_with_ellipsis": 299,
+    "rows_with_question_mark": 162,
+    "rows_with_exclamation_mark": 124,
+    "median_utterance_chars": 16
+  },
+  "interpretation": "Counts describe isolated story utterances. Response length and punctuation budgets are design choices.",
+  "context_verification_2026_11_25": {
+    "scope": "10 contextual scenes checked against surrounding transcript; official diary inspected",
+    "scene_file": "context_scenes.json",
+    "original_lines_in_scenes": 43,
+    "all_614_online_reverified": false
+  }
+}

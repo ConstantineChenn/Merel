@@ -1,0 +1,26 @@
+MEREL 常规英文字体
+日期：2026年11月25日
+
+字体：Theano Didot
+设计者：Alexey Kryukov
+取得来源：https://ctan.org/pkg/theanodidot
+设计者仓库：https://github.com/akryukov/theano
+下载包：https://mirrors.ctan.org/fonts/theanodidot.zip
+许可：SIL Open Font License 1.1，原文随附 SILOpenFontLicense.txt。
+文件：TheanoDidot-Regular.ttf、TheanoDidot-Bold.ttf。
+字体文件按发布包原样保留，没有修改轮廓、改名或重新生成字形。Bold 是 CTAN 包提供的加粗变体。
+source.json 记录文件长度和 SHA-256。
+
+视觉参考核对
+1999 官方英文站 CSS：https://re1999.bluepoch.com/en/home/css/index926.css
+该样式声明 Den 字体并引用 ../font/Didot.ttf。
+官方字体资源：https://re1999.bluepoch.com/en/home/font/Didot.ttf
+本次核验该文件为 8796 字节的 Didot Italic 子集，Unicode cmap 只覆盖 #，不能承担界面的通用英文显示，因此未随原型分发。
+当前采用完整的 Theano Didot 实现相近的 Didot 衬线风格。其身份与适用范围见原型约束.txt。
+
+实现
+由 frontend/typography.css 集中声明，字体从本地 /assets/fonts/ 加载。
+覆盖 Latin 字符及常用西文标点，中文继续使用系统字体回退。
+预加载常规字重；粗体按需加载；font-display:swap 保持首屏可读。
+诗句由 poem-reader.css 独立控制，保持 Palatino Linotype / Georgia 的斜体。
+代码、标识追踪与 JSON 保持原有等宽字体。

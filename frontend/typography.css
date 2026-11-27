@@ -1,0 +1,47 @@
+/* Didot-style Latin typography; CJK keeps the established system typeface.
+   The poem owns its explicit Palatino italic style in poem-reader.css. */
+@font-face {
+  font-family: "Theano Didot";
+  src: url("/assets/fonts/TheanoDidot-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF;
+}
+@font-face {
+  font-family: "Theano Didot";
+  src: url("/assets/fonts/TheanoDidot-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF;
+}
+:root {
+  --font-latin: "Theano Didot";
+  --font-ui: var(--font-latin), -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--font-ui);
+  font-kerning: normal;
+}
+.brand h1 { font-size: 30px; font-weight: 400; letter-spacing: .045em; line-height: 1.1; }
+.brand p.brand-full-name { font-size: 14px; line-height: 1.35; letter-spacing: .015em; }
+.radial-item small { font-size: 12px; line-height: 1.2; letter-spacing: .065em; opacity: .92; white-space: nowrap; }
+.portrait-caption { font-size: 11px; }
+.portrait-caption small { font-size: 10px; letter-spacing: .15em; }
+.eyebrow, .section-kicker { letter-spacing: .12em; }
+.message-meta > span:first-child { letter-spacing: .08em; }
+.page h1, .empty-panel h2 { font-family: var(--font-latin), "Songti SC", "STSong", "SimSun", serif; }
+
+@media (max-width:600px) {
+  .brand h1 { font-size: 26px; }
+  .brand p.brand-full-name { font-size: 12px; line-height: 1.3; }
+  .radial-item { gap: 8px; padding-inline: 11px; }
+  .radial-icon { flex-basis: 36px; }
+  .radial-label { flex: 1; min-width: 0; }
+  .radial-chevron { display: none; }
+  .radial-item small { font-size: 11px; letter-spacing: .035em; }
+}
+@media (max-width:360px) {
+  .site-header { align-items: flex-start; padding-top: 12px; }
+  .brand h1 { font-size: 24px; }
+  .brand p.brand-full-name { position: absolute; left: 48px; right: 0; bottom: 8px; max-width: none; margin: 0; }
+}

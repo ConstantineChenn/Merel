@@ -1,0 +1,188 @@
+/* Original portrait pixels stay intact. The viewport crops the lower coat naturally. */
+.app-shell {
+  --figure-top: calc(var(--header-height) + 36px);
+  --figure-width: min(38vw, calc((100dvh - 120px) * .66), 490px);
+  --figure-left: max(14px, calc((47vw - var(--figure-width)) / 2));
+}
+.workspace { width: min(53%,760px); margin-left: auto; }
+.is-workspace .workspace { width: min(54%,820px); margin-left: auto; }
+.character-stage { position: fixed; z-index: 2; top: var(--figure-top); left: var(--figure-left); width: var(--figure-width); height: calc(100dvh - var(--figure-top)); pointer-events: none; }
+.character-stage::before { content: ''; position: absolute; inset: -2% -25% 0; background: radial-gradient(ellipse at 45% 40%,#d6cae63b,transparent 67%); pointer-events: none; }
+.character-trigger { position: absolute; inset: 0; display: block; width: 100%; height: 100%; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 90px 90px 0 0; background: transparent!important; pointer-events: auto; user-select: none; transform-origin: 45% 30%; transition: translate .45s ease,filter .3s ease; }
+.character-trigger:focus-visible { outline-offset: 3px; }
+.character-portrait { position: absolute; top: 0; left: 0; display: block; width: 100%; height: auto; max-width: none; aspect-ratio: auto 1789/6090; pointer-events: none; filter: drop-shadow(9px 6px 18px #5d4a6c15); }
+.menu-open .character-trigger { translate: -7px 3px; }
+.portrait-orbit { position: absolute; top: 12%; left: -12%; width: 125%; aspect-ratio: 1; border: 1px solid #bab0d338; border-radius: 50%; transform: rotate(-22deg); pointer-events: none; }
+.portrait-orbit::before { content: ''; position: absolute; inset: 22px; border: 1px dashed #bfb5d334; border-radius: 50%; }
+.portrait-orbit::after { content: '✦'; position: absolute; right: 10%; top: 9%; color: #c4b68d; font-size: 23px; }
+.portrait-caption { position: fixed; top: 26%; left: 2.7vw; display: flex; gap: 18px; writing-mode: vertical-rl; font-size: 10px; letter-spacing: 4px; color: #aaa2bd; pointer-events: none; }
+.portrait-caption small { font-size: 9px; letter-spacing: 3px; }
+.character-hint { position: fixed; z-index: 21; top: calc(var(--header-height) + 14px); left: var(--gutter); display: flex; align-items: center; gap: 8px; width: max-content; min-height: 36px; max-width: 43vw; padding: 9px 14px; border-radius: 30px; font-size: 11px; letter-spacing: .6px; color: #8b80a6; background: #ffffffb8; box-shadow: 0 6px 30px #7d6c9d0c; backdrop-filter: blur(12px); pointer-events: auto; }
+.character-hint:hover:not(:disabled) { background: #f0ecfa; color: #776895; }
+.character-status { position: fixed; left: var(--gutter); top: calc(var(--header-height) + 58px); max-width: 35vw; padding: 8px 13px; border-radius: 30px; font-size: 11px; color: #7d70a5; background: #f7f3ffd9; backdrop-filter: blur(14px); }
+.is-thinking .portrait-orbit { animation: breathe 2.5s ease-in-out infinite; }
+.reply-ready .character-status { animation: arrival .5s ease-out; }
+.menu-open .character-stage { z-index: 8; }
+.menu-open .character-status { opacity: 0; }
+.radial-nav { position: absolute; z-index: 10; left: 73%; top: max(70px,calc(37% - 100px)); width: 198px; height: 410px; pointer-events: none; }
+.radial-item { --angle: 0deg; position: absolute; left: 0; top: calc(var(--i) * 78px); display: flex; align-items: center; gap: 10px; width: 198px; min-height: 65px; padding: 9px 14px; border: 0; border-radius: 25px 15px 15px 25px; background: #f7f6fdef; color: #79729c; text-align: left; box-shadow: 0 8px 26px #78669b15; backdrop-filter: blur(18px); pointer-events: auto; transform: rotate(var(--angle)); transform-origin: 0 50%; animation: menu-arrive .3s ease-out both; animation-delay: calc(var(--i) * 30ms); }
+.radial-item:nth-child(1) { --angle: -10deg; left: -4px; }
+.radial-item:nth-child(2) { --angle: -5deg; left: 13px; }
+.radial-item:nth-child(3) { left: 20px; }
+.radial-item:nth-child(4) { --angle: 5deg; left: 13px; }
+.radial-item:nth-child(5) { --angle: 10deg; left: -4px; }
+.radial-item:hover,.radial-item.active { background: #8583b6; color: #fff; box-shadow: 0 10px 30px #78669b26; }
+.radial-item:focus:not(:focus-visible) { outline: none; }
+.radial-icon { flex: 0 0 43px; }
+.page-symbol .page-sticker { display: block; width: 85%; height: 85%; object-fit: contain; }
+.radial-sticker { display: block; width: 43px; height: 43px; object-fit: contain; border: 0; border-radius: 0; background: transparent; }
+.radial-label { display: grid; gap: 4px; }
+.radial-item strong { font-size: 14px; font-weight: 500; letter-spacing: 2px; }
+.radial-item small { font-size: 8px; letter-spacing: 1px; opacity: .7; }
+.radial-chevron { margin-left: auto; font-size: 21px; opacity: .6; }
+@keyframes menu-arrive { from { opacity: 0; translate: -22px 0; } to { opacity: 1; translate: 0 0; } }
+.messages { padding-right: 0; padding-left: 23px; }
+.hero-greeting::after,.message.assistant::after { right: auto; left: -18px; clip-path: polygon(100% 0,0 50%,100% 100%); }
+.hero-greeting { border-radius: 22px 22px 22px 5px; }
+.message.assistant { margin-left: 0; margin-right: auto; border-radius: 18px 18px 18px 4px; }
+.message.user { margin-left: auto; margin-right: 0; border-radius: 18px 18px 4px 18px; }
+.merel-mascot { display: block; line-height: 0; }
+.merel-mascot img { display: block; width: 100%; height: auto; }
+.brand-mascot { width: 58px; flex-basis: 58px; }
+.brand { min-width: 0; }
+.header-actions { flex-shrink: 0; white-space: nowrap; }
+.brand p.brand-full-name {
+  margin: 3px 0 0;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+.thinking-mascot { width: 46px; flex: 0 0 46px; }
+
+
+
+
+
+
+
+@media (hover:hover) { .character-trigger:hover .character-portrait { filter: drop-shadow(9px 2px 20px #b5a3d344); } }
+@media (max-width:1050px) and (min-width:601px) {
+  .workspace,.is-workspace .workspace { width: 58%; }
+  .app-shell { --figure-left: max(7px,calc((44vw - var(--figure-width))/2)); }
+  .portrait-caption { left: 1.5vw; }
+  .radial-nav { width: 175px; left: 68%; }
+  .radial-item { width: 175px; gap: 8px; padding-inline: 11px; }
+  .radial-icon { flex-basis: 38px; }
+  .radial-sticker { width: 38px; height: 38px; }
+  .radial-item strong { font-size: 13px; }
+  .radial-item small { font-size: 7px; }
+  .radial-chevron { display: none; }
+}
+@media (max-width:600px) {
+  .app-shell { --figure-width: min(59vw,calc((100dvh - 180px) * .4)); --figure-top: calc(var(--header-height) + 88px); --figure-left: -18px; }
+  .workspace,.is-workspace .workspace { width: 100%; margin-left: 0; }
+  .character-hint { top: calc(var(--header-height) + 7px); left: 20px; min-height: 40px; max-width: none; padding: 8px 10px; font-size: 9px; letter-spacing: 0; }
+  .character-status { top: calc(var(--header-height) + 50px); left: 20px; max-width: 48vw; font-size: 10px; padding: 7px 10px; }
+  .portrait-caption { display: none; }
+  .portrait-orbit { top: 14%; width: 145%; left: -25%; }
+  .brand-mascot { width: 46px; flex-basis: 46px; }
+  .is-chat .workspace { padding-top: 51px; }
+  .chat-heading { justify-content: flex-end; }
+  .messages { padding: 16px 0 10px 19px; }
+  .hero-greeting { width: 73%; margin: 6px 0 10px auto; padding: 22px 15px; background: linear-gradient(120deg,#f5f1fcdb,#eeebf7e3); }
+  .hero-greeting h2 { font-size: clamp(22px,6vw,30px); }
+  .hero-greeting p { font-size: 11px; }
+  .message.assistant { background: #f1eefbf5; }
+  .message.user { background: #e9effbf5; }
+  .is-chat:not(.menu-open):has(.message) .character-stage { opacity: .4; }
+  .is-workspace:not(.menu-open) .character-stage { opacity: .16; }
+  .character-stage { transition: opacity .25s; }
+  .radial-nav { position: fixed; left: auto; right: 22px; top: max(140px,calc(50dvh - 185px)); width: 151px; height: 340px; }
+  .radial-item { width: 151px; min-height: 58px; top: calc(var(--i) * 66px); padding: 8px 10px; gap: 8px; border-radius: 22px 13px 13px 22px; }
+  .radial-item:nth-child(1) { --angle: -7deg; left: 0; }
+  .radial-item:nth-child(2) { --angle: -3deg; left: 3px; }
+  .radial-item:nth-child(3) { left: 6px; }
+  .radial-item:nth-child(4) { --angle: 3deg; left: 3px; }
+  .radial-item:nth-child(5) { --angle: 7deg; left: 0; }
+  .radial-icon { flex-basis: 36px; }
+  .radial-sticker { width: 36px; height: 36px; }
+  .radial-item strong { font-size: 13px; letter-spacing: 1px; }
+  .radial-item small { font-size: 7px; letter-spacing: .7px; }
+  .radial-chevron { font-size: 18px; }
+  .is-workspace .workspace { margin-top: 58px; }
+}
+@media (max-height:740px) and (min-width:601px) {
+  .app-shell { --figure-top: calc(var(--header-height) + 35px); }
+  .radial-nav { top: max(40px,calc(31% - 80px)); height: 360px; }
+  .radial-item { top: calc(var(--i) * 68px); min-height: 58px; }
+}
+@media (max-height:520px) and (min-width:601px) {
+  .app-shell { --figure-width: min(31vw,calc((100dvh - 80px) * .68)); --figure-top: calc(var(--header-height) + 20px); }
+  .character-hint { top: calc(var(--header-height) + 5px); font-size: 9px; min-height: 30px; padding: 6px 9px; }
+  .character-status { top: calc(var(--header-height) + 40px); font-size: 9px; }
+  /* Keep the short-window menu to the portrait's right, fanning around a shared
+     origin. The stagger and rotation remain visible instead of becoming tiles. */
+  .radial-nav {
+    --fan-step: clamp(47px, calc((100dvh - var(--header-height) - 173px) / 4), 65px);
+    position: fixed;
+    left: clamp(calc(var(--figure-left) + var(--figure-width) + 14px), 54vw, calc(100vw - var(--gutter) - 272px));
+    right: auto;
+    top: calc(var(--header-height) + 24px);
+    width: 270px;
+    height: calc(4 * var(--fan-step) + 70px);
+    display: block;
+  }
+  .radial-item,.radial-item:nth-child(n) {
+    position: absolute;
+    top: calc(var(--i) * var(--fan-step));
+    left: var(--fan-x);
+    width: 184px;
+    height: 48px;
+    min-height: 48px;
+    padding: 4px 10px;
+    gap: 8px;
+    transform: rotate(var(--angle));
+  }
+  .radial-item:nth-child(1) { --fan-x: 0px; --angle: -7deg; }
+  .radial-item:nth-child(2) { --fan-x: 56px; --angle: -3.5deg; }
+  .radial-item:nth-child(3) { --fan-x: 84px; --angle: 0deg; }
+  .radial-item:nth-child(4) { --fan-x: 56px; --angle: 3.5deg; }
+  .radial-item:nth-child(5) { --fan-x: 0px; --angle: 7deg; }
+  .radial-label { gap: 3px; }
+  .radial-item strong { line-height: 1.15; }
+  .radial-chevron { display: none; }
+  .radial-sticker { width: 31px; height: 31px; }
+  .radial-icon { flex-basis: 31px; }
+  .radial-item strong { font-size: 12px; letter-spacing: 1px; }
+  .radial-item small { font-size: 6px; }
+}
+@media (max-height:600px) and (max-width:600px) {
+  .app-shell { --figure-top: calc(var(--header-height) + 70px); --figure-width: min(57vw,calc((100dvh - 130px) * .5)); }
+  .radial-nav { top: 130px; height: 265px; width: 140px; }
+  .radial-item { min-height: 46px; top: calc(var(--i) * 51px); width: 140px; padding-block: 5px; }
+  .radial-sticker { width: 31px; height: 31px; }
+  .radial-icon { flex-basis: 31px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .character-trigger,.character-stage,.radial-item { transition: none; animation: none; }
+  .menu-open .character-trigger { translate: none; }
+}
+
+.research-progress, .expression-album { margin-block: 0 16px; }
+.research-progress summary, .expression-album summary { cursor: pointer; font-weight: 600; color: #554e6c; }
+.research-progress summary small, .expression-album summary small { margin-inline-start: 12px; font-weight: 400; color: #766e83; }
+.research-progress dl, .decision-summary { display: grid; gap: 14px; margin: 18px 0 0; }
+.research-progress dl div, .decision-summary div { display: grid; grid-template-columns: minmax(6em, 8em) 1fr; gap: 12px; }
+.research-progress dt, .decision-summary dt, .album-controls label { color: #696178; font-size: .86rem; }
+.research-progress dd, .decision-summary dd, .album-controls p { margin: 0; color: #514b5c; font-size: .9rem; line-height: 1.65; }
+.decision-summary { border-top: 1px solid #e6e1ec; padding-top: 16px; }
+.album-body { display: flex; align-items: center; gap: 18px; margin-top: 16px; }
+.album-portrait { position: relative; overflow: hidden; flex: 0 0 100px; height: 110px; border-radius: 14px; background: #eeebf3; }
+.album-portrait img { position: absolute; top: -18px; left: -39px; width: 172px; max-width: none; height: auto; }
+.album-controls { flex: 1; min-width: 0; display: grid; gap: 7px; }
+.album-controls select { width: 100%; min-height: 40px; padding: 5px 8px; color: #453e53; background: white; border: 1px solid #d4cddf; border-radius: 8px; }
+@media (max-width: 520px) {
+  .research-progress dl div, .decision-summary div { grid-template-columns: 1fr; gap: 3px; }
+  .album-body { align-items: flex-start; gap: 10px; }
+}

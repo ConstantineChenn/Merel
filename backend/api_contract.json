@@ -1,0 +1,43 @@
+{
+  "version": "merel-api-v1",
+  "prefix": "/api",
+  "identity": {"cookie": "merel_session", "http_only": true, "same_site": "strict", "scope": "anonymous_local_user"},
+  "endpoints": {
+    "POST /session": "Create or reuse anonymous identity; returns user and mode.",
+    "GET /bootstrap": "user, conversations[], actions[30], mode, symptom_definitions[12], stats",
+    "GET /conversations": "{conversations: [...]}",
+    "POST /conversations": "{title?: string} -> conversation (201)",
+    "GET /conversations/{id}": "conversation + turns[] including user_text, response, feedback, trace",
+    "PATCH /conversations/{id}": "{title: string} -> conversation",
+    "DELETE /conversations/{id}": "{deleted: true}; cascades turns, feedback, plans, state events and request records",
+    "GET /conversations/{id}/state": "{state, version, history[]}",
+    "PATCH /conversations/{id}/state": "{expected_version, symptoms:{code:0..3|null}, duration_days?:0..3650|null, functional_burden?:{study,selfcare,social}} -> {state,version}",
+    "POST /conversations/{id}/turns": "{text,expected_version,idempotency_key} -> turn; same key/payload replays original response",
+    "POST /turns/{id}/feedback": "{helpfulness:1..5,burden:1..5,note?:string} -> stored feedback; editable",
+    "GET /turns/{id}/trace": "trace + turn_id, state, ranking, selected_action",
+    "GET /plans": "{plans:[...]}",
+    "POST /plans": "{turn_id} -> plan (201); one plan per turn, urgent-support route cannot be added",
+    "PATCH /plans/{id}": "{status:todo|done|archived} -> plan",
+    "PATCH /profile": "{display_name} -> {user}",
+    "GET /settings": "mode, storage, catalog_version, catalog_status, api_key_configured, features, algorithm_status, history_scope, full_name; no secrets",
+    "GET /export": "downloadable user-scoped JSON containing conversations, all turn snapshots, state history and plans"
+  },
+  "conversation": ["id", "title", "version", "state", "created_at", "updated_at"],
+  "turn": ["turn_id", "conversation_id", "version", "user_text", "response", "state", "selected_action", "ranking", "trace", "feedback", "created_at"],
+  "state": {
+    "version": "integer; message commit and manual correction both increment",
+    "symptoms": "12 code keys -> {value:0..3|null,presence:unknown|present|absent,source,evidence,updated_at}",
+    "duration_days": "integer or null",
+    "functional_burden": "{study:0..3|null,selfcare:0..3|null,social:0..3|null}",
+    "summary": "string",
+    "updated_at": "ISO timestamp or null"
+  },
+  "action": ["id", "title", "strategy_id", "strategy_label", "description", "burden", "duration_minutes", "catalog_version", "release_status"],
+  "ranking": "30 unique action IDs, title, score in [0,1], reason; independent urgent-support route returns []",
+  "trace": ["trace_id", "policy_version", "catalog_version", "extractor", "generator", "latency_ms", "stages", "warnings", "model_calls", "route", "history_turns"],
+  "errors": {"401":"identity required", "403":"origin mismatch", "404":"missing or not owned", "409":"version/idempotency/pending conflict", "422":"invalid fields", "503":"uncommitted generation failure"},
+  "pending": "Duplicate in-flight request returns 202 {status:'pending',request_id}; retry identical payload. A different request while pending receives 409.",
+  "model": {"default_mode":"local deterministic demonstration", "online":"server environment configuration only; structured extraction and reply generation, local fallback is traceable", "policy":"state-rule-demo-v1", "trained_research_policy_loaded":false},
+  "timestamps": "UTC ISO-8601; clients render local time",
+  "static": "/ -> frontend/index.html; /assets -> frontend directory"
+}
