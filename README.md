@@ -1,4 +1,4 @@
-# MEREL · State-Aware Empathetic Dialogue
+# MEREL：**Mental-State-Enhanced Recommendation with Empathetic LLMs**
 
 > **Mental-State-Enhanced Recommendation with Empathetic LLMs**<br>
 > A research prototype connecting state tracking, support-action recommendation, empathetic dialogue and traceable feedback.<br>
