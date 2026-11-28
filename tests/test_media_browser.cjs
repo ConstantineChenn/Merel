@@ -47,6 +47,11 @@ async function music(page) {
 
     const app = await browser.newPage();
     const errors = [];
+    const second = gate(), third = gate();
+    const musicRequests = [];
+    app.on('request', r => { if (/pathetique-.*m4a/.test(r.url())) musicRequests.push(r.url()); });
+    await app.route('**/pathetique-02-180s.aac-64.m4a', async route => { await second.promise; await route.continue(); });
+    await app.route('**/pathetique-03-180s.aac-64.m4a', async route => { await third.promise; await route.continue(); });
     app.on('pageerror', e => errors.push(e.message));
     await app.goto(base);
     await music(app);
@@ -55,26 +60,43 @@ async function music(page) {
     }));
     assert.equal(audioState.controls, false);
     assert.equal(audioState.hidden, true);
-    assert.equal(audioState.loop, true);
-    assert(Math.abs(audioState.duration - 179.351) < .1);
-    assert(audioState.src.endsWith('/city-blue.aac-160.m4a'));
+    assert.equal(audioState.loop, false); // The four-excerpt playlist, rather than one track, loops.
+    assert(Math.abs(audioState.duration - 180) < .1);
+    assert(audioState.src.endsWith('/pathetique-01-180s.aac-64.m4a'));
     evidence.audio = audioState;
-    const range = await app.request.get(base + '/assets/audio/city-blue.aac-160.m4a', { headers: { Range: 'bytes=0-1023' } });
+    const range = await app.request.get(base + '/assets/audio/pathetique-01-180s.aac-64.m4a', { headers: { Range: 'bytes=0-1023' } });
     assert.equal(range.status(), 206);
     assert.equal(range.headers()['content-type'], 'audio/mp4');
     assert.equal((await range.body()).length, 1024);
     evidence.checks.push('AAC actually plays with no controls; correct duration, MIME and HTTP byte ranges');
+    assert(!musicRequests.some(url => /pathetique-0[34]/.test(url)));
+    const thirdRequest = app.waitForRequest('**/pathetique-03-180s.aac-64.m4a');
+    second.release();
+    await thirdRequest;
+    assert(!musicRequests.some(url => url.includes('pathetique-04')));
+    const fourthComplete = app.waitForEvent('requestfinished', { predicate: r => r.url().includes('pathetique-04') });
+    third.release();
+    await fourthComplete;
+    assert.deepEqual(musicRequests.map(url => url.match(/pathetique-(\d+)/)[1]), ['01', '02', '03', '04']);
+    evidence.checks.push('Remaining excerpts download in movement order with only one prefetch at a time');
 
     await app.evaluate(() => { window.originalPlayer = document.querySelector('audio'); originalPlayer.currentTime = 35; });
     await app.locator('#message-input').fill('测试草稿');
-    await app.evaluate(async () => { (await import('/assets/background-music.js?v=20261128-portraits1')).initBackgroundMusic(); });
+    await app.evaluate(async () => { (await import('/assets/background-music.js?v=20261128-pathetique1')).initBackgroundMusic(); });
     await app.getByRole('button', { name: '点击 Merel 更换表情并展开空间', exact: true }).click();
     await app.getByRole('button', { name: /设置 SETTINGS/ }).click();
     assert(await app.evaluate(() => document.querySelectorAll('audio').length === 1 &&
       document.querySelector('audio') === originalPlayer && originalPlayer.currentTime >= 35 && !originalPlayer.paused));
-    await app.locator('audio').evaluate(a => { a.currentTime = a.duration - .3; });
-    await app.waitForFunction(() => document.querySelector('audio').currentTime < 3);
-    evidence.checks.push('Navigation and repeat initialization keep one player; the track loops at its end');
+    for (const track of [1, 2, 3, 0]) {
+      await app.locator('audio').evaluate(a => { a.currentTime = a.duration - .3; });
+      await app.waitForFunction(track => {
+        const a = document.querySelector('audio');
+        return a.dataset.trackIndex === String(track) && a.currentTime > 0 && a.currentTime < 5 && !a.paused;
+      }, track);
+      assert(Math.abs(await app.locator('audio').evaluate(a => a.duration)-180) < .1);
+    }
+    assert.equal(musicRequests.filter(url => /pathetique-0[234]/.test(url)).length, 3);
+    evidence.checks.push('Navigation keeps one player; all four excerpts advance and wrap to the first without re-downloading prefetched tracks');
     assert.deepEqual(errors, []);
     await app.close();
 
@@ -82,18 +104,33 @@ async function music(page) {
     const failureErrors = [];
     failed.on('pageerror', e => failureErrors.push(e.message));
     let attempts = 0;
-    await failed.route('**/city-blue.aac-160.m4a', route => { attempts++; return route.abort(); });
+    await failed.route('**/pathetique-01-180s.aac-64.m4a', route => { attempts++; return route.abort(); });
     await failed.goto(base);
     await failed.waitForFunction(() => !!document.querySelector('audio')?.error);
     await failed.locator('#message-input').fill('音乐失败也能输入');
     assert.equal(await failed.locator('#message-input').inputValue(), '音乐失败也能输入');
-    await failed.unroute('**/city-blue.aac-160.m4a');
+    await failed.unroute('**/pathetique-01-180s.aac-64.m4a');
     await failed.locator('#message-input').click();
     await music(failed);
     assert(attempts > 0);
     assert.deepEqual(failureErrors, []);
     evidence.checks.push('Failed music requests leave input usable; the next interaction recovers playback');
     await failed.close();
+
+    const recover = await browser.newPage();
+    const recoverErrors = [];
+    recover.on('pageerror', e => recoverErrors.push(e.message));
+    await recover.route('**/pathetique-02-180s.aac-64.m4a', route => route.abort());
+    const failedPrefetch = recover.waitForEvent('requestfailed', { predicate: r => r.url().includes('pathetique-02') });
+    await recover.goto(base);
+    await music(recover);
+    await failedPrefetch;
+    await recover.unroute('**/pathetique-02-180s.aac-64.m4a');
+    await recover.locator('audio').evaluate(a => { a.currentTime = a.duration - .3; });
+    await recover.waitForFunction(() => document.querySelector('audio').dataset.trackIndex === '1' && document.querySelector('audio').currentTime > 0);
+    assert.deepEqual(recoverErrors, []);
+    evidence.checks.push('A failed later-track prefetch falls back to a fresh playable request when that movement starts');
+    await recover.close();
   } finally { await browser.close(); }
 
   const restricted = await launch('document-user-activation-required');

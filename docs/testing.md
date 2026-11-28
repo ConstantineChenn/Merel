@@ -58,9 +58,9 @@ python scripts/http_acceptance.py http://127.0.0.1:8787
 
 ## 背景音乐与自动换图复查
 
-`tests/test_media_browser.cjs` 覆盖 6 组场景：34 张低清图自动升级至原尺寸高清、AAC 实际播放及 HTTP Range、循环及跨页面播放、请求失败后恢复、禁止自动播放时键盘启动、手机尺寸触摸启动。全部通过；手机场景使用 Chromium 模拟，不代表真实 iOS Safari 设备验收。
+`tests/test_media_browser.cjs` 覆盖 8 组场景：34 张低清图自动升级至原尺寸高清、AAC 实际播放及 HTTP Range、顺序预下载、四段切换循环及跨页面播放、首段请求失败恢复、后续预下载失败恢复、禁止自动播放时键盘启动、手机尺寸触摸启动。全部通过；手机场景使用 Chromium 模拟，不代表真实 iOS Safari 设备验收。
 
-自动播放限制场景使用 CDP 的 `userGesture: false` 检查初始状态，避免测试框架执行 JavaScript 时意外授予用户激活。音乐全程解码、179.35 秒时长及 AAC 双声道格式均已校验。
+自动播放限制场景使用 CDP 的 `userGesture: false` 检查初始状态，避免测试框架执行 JavaScript 时意外授予用户激活。《悲怆》四段均通过全程解码、180 秒时长、AAC 双声道格式及首秒音频信号检查。逐段快进至结尾验证一→二→三→四→一，已预下载的段落不会再次请求。
 
 在独立测试实例启动后运行：
 

@@ -1,5 +1,5 @@
 import { requestId } from './request-id.js?v=20261128-demo2';
-import { initBackgroundMusic } from './background-music.js?v=20261128-portraits1';
+import { initBackgroundMusic } from './background-music.js?v=20261128-pathetique1';
 import { progressiveImage, setProgressiveImage } from './progressive-images.js?v=20261128-portraits1';
 import { voiceSettingsPanel, voiceReplayPanel } from './voice-status.js';
 import { researchProgress, expressionAlbum, decisionSummary } from './research-panels.js?v=20261128-portraits1';
