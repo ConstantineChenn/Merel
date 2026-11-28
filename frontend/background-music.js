@@ -1,3 +1,4 @@
+import { whenInitialPortraitsReady } from './progressive-images.js?v=20261128-portraits1';
 // One player survives view changes; music never blocks the conversation UI.
 let player;
 
@@ -12,11 +13,12 @@ export function initBackgroundMusic() {
   audio.preload = 'none';
   audio.volume = 0.3;
   audio.setAttribute('aria-hidden', 'true');
-  audio.src = '/assets/audio/city-blue.aac-160.m4a';
-  audio.dataset.state = 'ready';
+  let ready = false;
+  audio.dataset.state = 'waiting-for-portraits';
   document.body.append(audio);
 
   function start(event) {
+    if (!ready) return;
     if (event?.type === 'keydown' && (event.ctrlKey || event.metaKey || event.altKey || event.key === 'Escape')) return;
     if (!audio.paused) return;
     if (audio.error) audio.load();
@@ -45,7 +47,11 @@ export function initBackgroundMusic() {
     if (audio.error) start();
   });
   listen(true);
-  // Give the newly rendered page a chance to paint before requesting music.
-  requestAnimationFrame(() => requestAnimationFrame(() => start()));
+  // Give the cover and initial click-through portrait bandwidth before music.
+  whenInitialPortraitsReady().then(() => {
+    audio.src = '/assets/audio/city-blue.aac-160.m4a';
+    ready = true;
+    start();
+  });
   return audio;
 }

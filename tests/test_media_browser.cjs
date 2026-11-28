@@ -67,7 +67,7 @@ async function music(page) {
 
     await app.evaluate(() => { window.originalPlayer = document.querySelector('audio'); originalPlayer.currentTime = 35; });
     await app.locator('#message-input').fill('测试草稿');
-    await app.evaluate(async () => { (await import('/assets/background-music.js?v=20261128-music1')).initBackgroundMusic(); });
+    await app.evaluate(async () => { (await import('/assets/background-music.js?v=20261128-portraits1')).initBackgroundMusic(); });
     await app.getByRole('button', { name: '点击 Merel 更换表情并展开空间', exact: true }).click();
     await app.getByRole('button', { name: /设置 SETTINGS/ }).click();
     assert(await app.evaluate(() => document.querySelectorAll('audio').length === 1 &&

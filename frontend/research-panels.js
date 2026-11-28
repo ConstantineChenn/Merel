@@ -1,4 +1,4 @@
-import { setProgressiveImage } from './progressive-images.js?v=20261128-demo2';
+import { setProgressiveImage } from './progressive-images.js?v=20261128-portraits1';
 import { faces } from './expression-policy.js';
 
 export function researchProgress(el) {

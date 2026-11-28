@@ -1,5 +1,5 @@
 import { expressionChoices, faces } from './expression-policy.js';
-import { progressiveImage, setProgressiveImage } from './progressive-images.js?v=20261128-demo2';
+import { progressiveImage, setProgressiveImage, preparePortraits } from './progressive-images.js?v=20261128-portraits1';
 const entries = [
   ['chat', '对话', 'CONVERSATION', 'sticker-worried'],
   ['state', '状态记录', 'STATE', 'sticker-tears'],
@@ -14,7 +14,7 @@ function showExpression(expression) {
   requestedExpression = expression;
   if (portrait.dataset.expression === expression) return;
   portrait.dataset.expression = expression;
-  portrait.alt = 'Merel · ' + faces[expression][0];
+  portrait.dataset.requestedAlt = 'Merel · ' + faces[expression][0];
   setProgressiveImage(portrait, 'expressions/' + expression, 'high');
 }
 
@@ -82,6 +82,7 @@ export function updateCharacter(next) {
     state.currentState?.version,state.busy,state.failed,state.loading,state.event,choices]);
   if (key !== contextKey) {
     contextKey = key;
+    preparePortraits(choices);
     showExpression(choices[0]);
   }
   app.classList.toggle('is-chat',state.page==='chat');app.classList.toggle('is-workspace',state.page!=='chat');
@@ -95,6 +96,7 @@ export function updateCharacter(next) {
   }
 }
 export function initCharacter(onNavigate) {
+  preparePortraits(['neutral', 'curious'], {cover:true});
   app=document.getElementById('app');
   hint=node('button',{type:'button',class:'character-hint','aria-expanded':'false','aria-controls':'character-nav'},node('span',{},openHint),node('span',{'aria-hidden':'true'},'✧'));
   portrait = progressiveImage('expressions/neutral', {class:'character-portrait', alt:'Merel · 平静', draggable:'false', 'data-expression':'neutral'}, {priority:'high'});

@@ -44,9 +44,9 @@ MEREL is a dialogue prototype for research on personalized support for depressiv
   <img src="docs/images/merel-mobile.png" width="280" alt="Merel mobile-size interface with character artwork, poetry, workspace navigation and a message composer">
 </p>
 
-Click Merel to open workspace navigation and browse 20 expressions in Settings. All 34 image assets first display a matching preview, then load a lossless full-resolution WebP. Late images cannot overwrite the expression currently selected.
+Click Merel to open workspace navigation and browse 20 expressions in Settings. Initial images show previews while full-resolution WebP assets load. The cover downloads first, followed by the expressions reachable by clicking in the current context. A clear portrait stays visible until the next one is decoded; cached images are reused without another download, and stale requests cannot overwrite the selected expression.
 
-**Mili — City Blue** plays on loop as a compact AAC background track. If the browser blocks autoplay, playback starts on the first interaction and continues across views.
+**Mili — City Blue** loads after the initial portraits and plays on loop as a compact AAC background track. If the browser blocks autoplay, a subsequent interaction starts playback. Music continues across views.
 
 </details>
 

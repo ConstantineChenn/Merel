@@ -1,9 +1,9 @@
 import { requestId } from './request-id.js?v=20261128-demo2';
-import { initBackgroundMusic } from './background-music.js?v=20261128-music1';
-import { progressiveImage, setProgressiveImage } from './progressive-images.js?v=20261128-demo2';
+import { initBackgroundMusic } from './background-music.js?v=20261128-portraits1';
+import { progressiveImage, setProgressiveImage } from './progressive-images.js?v=20261128-portraits1';
 import { voiceSettingsPanel, voiceReplayPanel } from './voice-status.js';
-import { researchProgress, expressionAlbum, decisionSummary } from './research-panels.js?v=20261128-demo2';
-import { acknowledgePlan, initCharacter, updateCharacter, closeCharacterMenu, mascot, notifyReplyReady, navigationSticker } from '/assets/character.js?v=20261128-demo2';
+import { researchProgress, expressionAlbum, decisionSummary } from './research-panels.js?v=20261128-portraits1';
+import { acknowledgePlan, initCharacter, updateCharacter, closeCharacterMenu, mascot, notifyReplyReady, navigationSticker } from '/assets/character.js?v=20261128-portraits1';
 import { symptomSelection, statePatch } from '/assets/state-form.js';
 import '/assets/poem-reader.js';
 const MEREL_FULL_NAME = 'Mental-State-Enhanced Recommendation with Empathetic LLMs';
