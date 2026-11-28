@@ -1,4 +1,6 @@
-# 背景音乐
+# 背景音乐素材存档
+
+当前网页已停用背景音乐，不导入播放器，也不请求音频文件。以下保留素材与先前播放器的处理说明。
 
 **柴可夫斯基：b 小调第六交响曲《悲怆》，作品 74**。采用 [Musopen 公开录音集](https://archive.org/details/MusopenCollectionAsFlac) 中的四乐章录音；来源标注 [Public Domain Mark 1.0](https://creativecommons.org/publicdomain/mark/1.0/)。
 

@@ -4,6 +4,13 @@ const fs = require('node:fs');
 const { chromium } = require('playwright');
 const base = process.argv[2] || 'http://127.0.0.1:8787';
 const evidence = { base, checks: [] };
+const archived = process.argv.includes('--with-archived-music');
+async function enableArchivedMusic(page) {
+  if (!archived) return;
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Runtime.evaluate', { expression: "import('/assets/background-music.js?v=20261128-pathetique1').then(m => { m.initBackgroundMusic(); })", awaitPromise: true, userGesture: false });
+  await cdp.detach();
+}
 const gate = () => { let release; const promise = new Promise(r => release = r); return { promise, release }; };
 const launch = (policy) => chromium.launch({
   headless: true,
@@ -54,6 +61,22 @@ async function music(page) {
     await app.route('**/pathetique-03-180s.aac-64.m4a', async route => { await third.promise; await route.continue(); });
     app.on('pageerror', e => errors.push(e.message));
     await app.goto(base);
+    if (!archived) {
+      await app.waitForLoadState('networkidle');
+      await app.locator('#message-input').fill('无背景音乐验证草稿');
+      await app.getByRole('button', { name: '点击 Merel 更换表情并展开空间', exact: true }).click();
+      await app.getByRole('button', { name: /设置 SETTINGS/ }).click();
+      await app.waitForLoadState('networkidle');
+      assert.equal(await app.locator('audio').count(), 0);
+      assert.deepEqual(musicRequests, []);
+      assert.deepEqual(errors, []);
+      evidence.checks.push('Entry, typing, portrait clicks and navigation create no audio player or background music requests');
+      evidence.passed = true;
+      fs.writeFileSync('test-results/media-browser.json', JSON.stringify(evidence, null, 2));
+      console.log(JSON.stringify(evidence, null, 2));
+      return;
+    }
+    await enableArchivedMusic(app);
     await music(app);
     const audioState = await app.locator('audio').evaluate(a => ({
       controls: a.controls, hidden: a.hidden, loop: a.loop, duration: a.duration, src: a.currentSrc,
@@ -106,6 +129,7 @@ async function music(page) {
     let attempts = 0;
     await failed.route('**/pathetique-01-180s.aac-64.m4a', route => { attempts++; return route.abort(); });
     await failed.goto(base);
+    await enableArchivedMusic(failed);
     await failed.waitForFunction(() => !!document.querySelector('audio')?.error);
     await failed.locator('#message-input').fill('音乐失败也能输入');
     assert.equal(await failed.locator('#message-input').inputValue(), '音乐失败也能输入');
@@ -123,6 +147,7 @@ async function music(page) {
     await recover.route('**/pathetique-02-180s.aac-64.m4a', route => route.abort());
     const failedPrefetch = recover.waitForEvent('requestfailed', { predicate: r => r.url().includes('pathetique-02') });
     await recover.goto(base);
+    await enableArchivedMusic(recover);
     await music(recover);
     await failedPrefetch;
     await recover.unroute('**/pathetique-02-180s.aac-64.m4a');
@@ -143,6 +168,8 @@ async function music(page) {
       // without a synthetic user gesture before testing the genuine input.
       const cdp = await page.context().newCDPSession(page);
       await page.goto(base, { waitUntil: 'networkidle' });
+      await enableArchivedMusic(page);
+      await page.waitForLoadState('networkidle');
       const initial = await cdp.send('Runtime.evaluate', {
         expression: `(() => { const a = document.querySelector('audio'); return {
           paused: a?.paused, state: a?.dataset.state, active: navigator.userActivation.hasBeenActive

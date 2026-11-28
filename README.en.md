@@ -46,7 +46,7 @@ MEREL is a dialogue prototype for research on personalized support for depressiv
 
 Click Merel to open workspace navigation and browse 20 expressions in Settings. Initial images show previews while full-resolution WebP assets load. The cover downloads first, followed by the expressions reachable by clicking in the current context. A clear portrait stays visible until the next one is decoded; cached images are reused without another download, and stale requests cannot overwrite the selected expression.
 
-The background playlist contains **three-minute excerpts from all four movements of Tchaikovsky’s Pathétique**. After the cover and click-through portraits load, the first excerpt starts buffering and playing; the remaining excerpts download sequentially. The four movements repeat in order. If the browser blocks autoplay, an interaction starts playback. Music continues across views.
+Background music is currently disabled: the page does not create a player or download background audio. The cover and current click-through portraits retain loading priority.
 
 </details>
 

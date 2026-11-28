@@ -25,11 +25,11 @@ async function full(page, expression) {
     await page.route('**' + coverPath, async route => { await cover.promise; await route.continue(); });
     await page.route('**' + nextPath, async route => { nextStarted.release(); await next.promise; await route.continue(); });
     await page.goto(base, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.quality === 'preview' && document.querySelector('audio'));
+    await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.quality === 'preview');
     assert.equal(requested.length, 1);
     assert(requested[0].endsWith(coverPath));
-    assert.equal(await page.locator('audio').getAttribute('src'), null);
-    evidence.checks.push('The cover is the first and only full-resolution request; music has no source yet');
+    assert.equal(await page.locator('audio').count(), 0);
+    evidence.checks.push('The cover is the first and only full-resolution request; no background player is created');
 
     cover.release();
     await full(page, 'neutral');
@@ -47,14 +47,14 @@ async function full(page, expression) {
     assert.equal(await portrait(page).getAttribute('data-pending-asset'), 'expressions/curious');
     assert((await portrait(page).getAttribute('data-full-source')).endsWith(coverPath));
     assert.equal(requested.length, 2);
-    evidence.checks.push('Clicking a not-yet-ready expression retains the clear cover; menu images and music wait');
+    evidence.checks.push('Clicking a not-yet-ready expression retains the clear cover; menu images wait');
     await page.locator('.character-trigger').click();
     await full(page, 'neutral');
     await page.locator('.character-trigger').click();
     assert.equal(await portrait(page).getAttribute('data-quality'), 'retained-full');
     next.release();
     await full(page, 'curious');
-    await page.waitForFunction(() => document.querySelector('audio')?.currentTime > 0);
+    assert.equal(await page.locator('audio').count(), 0);
     assert.deepEqual(await page.evaluate(() => downgrades), []);
     for (let i = 0; i < 8; i++) await page.locator('.character-trigger').click();
     await full(page, 'curious');
@@ -71,7 +71,7 @@ async function full(page, expression) {
     await page.route('**' + nextPath, route => { failures++; return route.abort(); });
     await page.goto(base);
     await full(page, 'neutral');
-    await page.waitForFunction(() => !!document.querySelector('audio')?.getAttribute('src'));
+    assert.equal(await page.locator('audio').count(), 0);
     const failedAgain = page.waitForEvent('requestfailed', { predicate: r => r.url().endsWith(nextPath) });
     await page.locator('.character-trigger').click();
     await failedAgain;
@@ -89,11 +89,11 @@ async function full(page, expression) {
     page = await browser.newPage();
     await page.route('**' + coverPath, route => route.abort());
     await page.goto(base);
-    await page.waitForFunction(() => document.querySelector('audio')?.currentTime > 0);
+    assert.equal(await page.locator('audio').count(), 0);
     assert.equal(await portrait(page).getAttribute('data-quality'), 'preview');
     await page.locator('.character-trigger').click();
     await full(page, 'curious');
-    evidence.checks.push('Cover failure releases the queue; the next expression and music can still load');
+    evidence.checks.push('Cover failure releases the queue; the next expression can still load');
     await page.close();
 
     page = await browser.newPage({ viewport: { width: 1360, height: 900 } });
@@ -107,11 +107,11 @@ async function full(page, expression) {
     await page.locator('.radial-item[data-page="plans"]').click();
     await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.asset === 'expressions/serious');
     slowCover.release();
-    assert.equal(await page.locator('audio').getAttribute('src'), null);
+    assert.equal(await page.locator('audio').count(), 0);
     plans.release();
     await full(page, 'serious');
-    await page.waitForFunction(() => document.querySelector('audio')?.currentTime > 0);
-    evidence.checks.push('Navigating before the cover finishes reprioritizes the new expression pair and releases music only afterward');
+    assert.equal(await page.locator('audio').count(), 0);
+    evidence.checks.push('Navigating before the cover finishes reprioritizes the new expression pair while background music stays disabled');
     await page.close();
 
     page = await browser.newPage();
@@ -119,13 +119,13 @@ async function full(page, expression) {
     const stalled = gate();
     await page.route('**' + coverPath, async route => { await stalled.promise; await route.continue().catch(() => {}); });
     await page.goto(base, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.quality === 'preview' && document.querySelector('audio'));
+    await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.quality === 'preview');
     await page.clock.fastForward(120500);
-    await page.waitForFunction(() => !!document.querySelector('audio')?.getAttribute('src'));
+    assert.equal(await page.locator('audio').count(), 0);
     stalled.release();
     await page.locator('.character-trigger').click();
     await full(page, 'curious');
-    evidence.checks.push('A stalled cover times out and releases later portrait and music requests without blocking the page');
+    evidence.checks.push('A stalled cover times out and releases later portrait requests without blocking the page');
     await page.close();
     evidence.passed = true;
     fs.mkdirSync('test-results', { recursive: true });
