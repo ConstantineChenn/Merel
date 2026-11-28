@@ -79,11 +79,18 @@ function toggleConversationMenu() {
   $('conversation-tools-button')?.setAttribute('aria-expanded', 'true');
   toolbar.querySelector('.conversation-actions button')?.focus();
 }
+// WebKit can focus the containing main between pointerup and click. Keep the
+// menu mounted until that internal gesture reaches its button's click handler.
+let pointerWithinConversationTools = false;
 document.addEventListener('pointerdown', event => {
-  if (!event.target.closest('#conversation-toolbar, #conversation-tools-button')) closeConversationMenu();
-});
+  pointerWithinConversationTools = !!event.target.closest('#conversation-toolbar, #conversation-tools-button');
+  if (!pointerWithinConversationTools) closeConversationMenu();
+}, true);
+document.addEventListener('click', () => { pointerWithinConversationTools = false; }, true);
+document.addEventListener('pointercancel', () => { pointerWithinConversationTools = false; }, true);
+document.addEventListener('keydown', () => { pointerWithinConversationTools = false; }, true);
 document.addEventListener('focusin', event => {
-  if (!event.target.closest('#conversation-toolbar, #conversation-tools-button')) closeConversationMenu();
+  if (!pointerWithinConversationTools && !event.target.closest('#conversation-toolbar, #conversation-tools-button')) closeConversationMenu();
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && $('conversation-toolbar')?.classList.contains('is-open')) {
@@ -146,7 +153,30 @@ function characterContext() {
 function render({bottom=false}={}){document.title=`MEREL · ${nav.find(x=>x[0]===S.page)?.[2]||'我的空间'}`;const scroll=$('content').querySelector('.chat-scroll');const y=scroll?.scrollTop||0;sidebar();header();updateCharacter(characterContext());const content=$('content');content.replaceChildren();if(S.booting){content.append(el('div',{class:'boot-state'},mascot('boot-mascot','','curious'),el('p',{},'正在准备你的空间…')));return;}if(S.pageError){content.append(errorPanel(S.pageError,refreshPage));return;}if(S.loading){content.append(el('div',{class:'loading-inline'},'正在读取…'));return;}const view={chat:chatView,state:stateView,plans:plansView,research:researchView,settings:settingsView}[S.page]||chatView;content.append(view());requestAnimationFrame(()=>{const target=content.querySelector('.chat-scroll');if(target){const hasMessages=!!S.current?.turns?.length||!!S.sending[cid()]||!!S.failed[cid()];target.scrollTop=bottom&&hasMessages?target.scrollHeight:hasMessages?y:0;}});}
 function errorPanel(message,retry){return el('section',{class:'error-state'},icon('globe'),el('h2',{},'这次连接没有完成'),el('p',{},message),btn('重新连接',retry,'primary-button','refresh'));}
 async function bootstrap(){S.booting=true;S.pageError=null;render();try{await api('/session',{method:'POST',body:{}});const b=await get('/bootstrap');S.user=b.user;S.mode=b.mode||{};S.definitions=b.symptom_definitions||[];S.conversations=list(b.conversations,'conversations');S.plans=list(await get('/plans'),'plans');let saved;try{saved=localStorage.getItem('merel.conversation');}catch{}const first=S.conversations.find(c=>(c.id||c.conversation_id)===saved)||S.conversations[0];if(first){S.current=await get('/conversations/'+(first.id||first.conversation_id));}else{S.current=await get('/conversations',{method:'POST',body:{}});S.conversations=[S.current];}saveSelected(cid());S.booting=false;render({bottom:true});}catch(err){S.booting=false;S.user=null;S.pageError=err.message;render();}}
-async function navigate(page){++loadGeneration;loadController?.abort();closeSidebar();closeCharacterMenu();S.page=page;S.pageError=null;if(page==='plans'||page==='settings'){S.loading=true;render();try{if(page==='plans')S.plans=list(await get('/plans'),'plans');else S.settings=await get('/settings');}catch(err){if(S.page===page)S.pageError=err.message;}finally{if(S.page===page){S.loading=false;render();}}}else{S.loading=false;render();}requestAnimationFrame(()=>{window.scrollTo(0,0);$('main')?.focus({preventScroll:true});});}
+async function navigate(page) {
+  ++loadGeneration;
+  loadController?.abort();
+  // A navigation link inside a modal must release its blocking top layer.
+  for (const dialog of $('modal-root').querySelectorAll('dialog[open]')) dialog.close();
+  closeConversationMenu();
+  closeSidebar();
+  closeCharacterMenu();
+  S.page = page;
+  S.pageError = null;
+  if (page === 'plans' || page === 'settings') {
+    S.loading = true;
+    render();
+    try {
+      if (page === 'plans') S.plans = list(await get('/plans'), 'plans');
+      else S.settings = await get('/settings');
+    } catch (err) {
+      if (S.page === page) S.pageError = err.message;
+    } finally {
+      if (S.page === page) { S.loading = false; render(); }
+    }
+  } else { S.loading = false; render(); }
+  requestAnimationFrame(() => { window.scrollTo(0, 0); $('main')?.focus({preventScroll:true}); });
+}
 async function refreshConversations(){const generation=++S.recentGeneration;const data=await get('/conversations');if(generation===S.recentGeneration)S.conversations=list(data,'conversations');}
 async function refreshPage(){if(!S.user)return bootstrap();const id=cid(),page=S.page;S.pageError=null;try{await refreshConversations();if(id){const data=await get('/conversations/'+id);if(cid()===id)S.current=data;}if(page==='plans')S.plans=list(await get('/plans'),'plans');if(page==='settings')S.settings=await get('/settings');if(S.page===page)render();}catch(err){if(S.page===page){S.pageError=err.message;render();}}}
 async function selectConversation(id){closeSidebar();const gen=++loadGeneration;loadController?.abort();loadController=new AbortController();S.page='chat';S.loading=true;S.pageError=null;render();try{const c=await get('/conversations/'+id,{signal:loadController.signal});if(gen!==loadGeneration)return;S.current=c;saveSelected(id);S.loading=false;render({bottom:true});}catch(err){if(gen!==loadGeneration||err.name==='AbortError')return;S.loading=false;S.pageError=err.message;render();}}

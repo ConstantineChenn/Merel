@@ -7,7 +7,8 @@ from uuid import uuid4
 import httpx
 
 base = sys.argv[1] if len(sys.argv) > 1 else 'http://127.0.0.1:8787'
-report = {'base': base, 'checks': [], 'model_turns': []}
+report = {'base': base, 'checks': [], 'model_turns': [], 'model_attempts': [], 'passed': False}
+destination=Path(__file__).resolve().parents[1]/'test-results/http-acceptance.json'
 
 def check(name, actual, expected):
     assert actual == expected, (name, actual, expected)
@@ -50,6 +51,7 @@ with httpx.Client(base_url=base, timeout=150, trust_env=False) as owner, httpx.C
             response=owner.post(path+'/turns',json=payload)
             check(f'Turn {version+1} HTTP status',response.status_code,200)
             turn=response.json()
+            report['model_attempts'].append(turn['trace'])
             check(f'Turn {version+1} real model',turn['trace']['generator'],'llm')
             check(f'Turn {version+1} nonempty reply',bool(turn['response'].strip()),True)
             check(f'Turn {version+1} version',turn['version'],version+1)
@@ -87,10 +89,13 @@ with httpx.Client(base_url=base, timeout=150, trust_env=False) as owner, httpx.C
         check('Dependent trace deleted',owner.get(f'/api/turns/{tid}/trace').status_code,404)
         check('Dependent plan deleted',owner.get('/api/plans').json()['plans'],[])
         report['passed']=True
+    except Exception as error:
+        report['failure']=str(error)
+        raise
     finally:
-        if cid: owner.delete('/api/conversations/'+cid)
-
-destination=Path(__file__).resolve().parents[1]/'test-results/http-acceptance.json'
-destination.parent.mkdir(parents=True,exist_ok=True)
-destination.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+        try:
+            if cid: owner.delete('/api/conversations/'+cid)
+        finally:
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            destination.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps({'base':base,'passed':report['passed'],'checks':len(report['checks']),'model_turns':report['model_turns']},ensure_ascii=False))

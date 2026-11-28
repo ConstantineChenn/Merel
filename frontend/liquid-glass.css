@@ -243,6 +243,7 @@ button:active:not(:disabled) { scale: .97; }
 .conversation-tools-toggle:is(:hover,[aria-expanded="true"]):not(:disabled) { background: var(--glass-fill); box-shadow: var(--glass-shadow), inset 0 0 10px #ffffff24; }
 .is-chat .chat-panel { grid-template-rows: minmax(0,1fr) auto; }
 .is-chat .workspace:has(.conversation-toolbar.is-open) { z-index: 30; }
+.workspace:has(.conversation-toolbar.is-open) merel-poem { visibility: hidden; }
 .chat-heading.conversation-toolbar {
   --tools-menu-top: calc((var(--header-height) + 44px) / 2 + 12px);
   display: none; position: fixed; z-index: 40;
@@ -267,7 +268,8 @@ button:active:not(:disabled) { scale: .97; }
   .header-brand-only .brand { padding-right: 52px; }
   .header-brand-only .brand p.brand-full-name { right: 52px; }
   .conversation-tools-toggle { top: 22px; }
-  .chat-heading.conversation-toolbar { --tools-menu-top: 78px; width: min(280px,calc(100vw - 36px)); }
+  /* Leave the visible character navigation hint above the tool menu. */
+  .chat-heading.conversation-toolbar { --tools-menu-top: calc(var(--header-height) + 61px); width: min(280px,calc(100vw - 36px)); }
 }
 @media (prefers-reduced-motion:reduce) {
   button:active:not(:disabled), .radial-item:hover { scale: 1; translate: none; }
