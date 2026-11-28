@@ -25,6 +25,7 @@ async function full(page, expression) {
     await page.route('**' + coverPath, async route => { await cover.promise; await route.continue(); });
     await page.route('**' + nextPath, async route => { nextStarted.release(); await next.promise; await route.continue(); });
     await page.goto(base, { waitUntil: 'domcontentloaded' });
+    await page.locator('#message-input').waitFor();
     await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.quality === 'preview');
     assert.equal(requested.length, 1);
     assert(requested[0].endsWith(coverPath));
@@ -70,6 +71,7 @@ async function full(page, expression) {
     let failures = 0;
     await page.route('**' + nextPath, route => { failures++; return route.abort(); });
     await page.goto(base);
+    await page.locator('#message-input').waitFor();
     await full(page, 'neutral');
     assert.equal(await page.locator('audio').count(), 0);
     const failedAgain = page.waitForEvent('requestfailed', { predicate: r => r.url().endsWith(nextPath) });
@@ -89,6 +91,7 @@ async function full(page, expression) {
     page = await browser.newPage();
     await page.route('**' + coverPath, route => route.abort());
     await page.goto(base);
+    await page.locator('#message-input').waitFor();
     assert.equal(await page.locator('audio').count(), 0);
     assert.equal(await portrait(page).getAttribute('data-quality'), 'preview');
     await page.locator('.character-trigger').click();
@@ -102,6 +105,7 @@ async function full(page, expression) {
     await page.route('**/expressions/serious.full.webp', async route => { await plans.promise; await route.continue(); });
     await page.route('**/expressions/talk.full.webp', async route => { await plans.promise; await route.continue(); });
     await page.goto(base, { waitUntil: 'domcontentloaded' });
+    await page.locator('#message-input').waitFor();
     await page.locator('#message-input').waitFor();
     await page.locator('.character-hint').click();
     await page.locator('.radial-item[data-page="plans"]').click();
@@ -119,6 +123,7 @@ async function full(page, expression) {
     const stalled = gate();
     await page.route('**' + coverPath, async route => { await stalled.promise; await route.continue().catch(() => {}); });
     await page.goto(base, { waitUntil: 'domcontentloaded' });
+    await page.locator('#message-input').waitFor();
     await page.waitForFunction(() => document.querySelector('.character-portrait')?.dataset.quality === 'preview');
     await page.clock.fastForward(120500);
     assert.equal(await page.locator('audio').count(), 0);
